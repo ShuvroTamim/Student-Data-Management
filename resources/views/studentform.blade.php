@@ -26,7 +26,7 @@
                   <input type="text" placeholder="Enter Address" class="form-control" name="addr"  value="">
              </div>
              <div class="form-group">
-                 <input type="submit"  class="btn btn-success" name="" value="Save/insert Data">
+                 <input type="submit"  class="btn btn-success" name="" value="Save">
              </div>
 
 

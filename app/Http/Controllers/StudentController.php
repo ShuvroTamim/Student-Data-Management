@@ -20,7 +20,7 @@ class StudentController extends Controller
 
         DB::Select("insert into student(name, num, course, addr) values('$name', $num, '$course','$addr')");
 
-      
+
 
         return redirect('/')->with('Success','Data saved');
 
@@ -39,6 +39,7 @@ class StudentController extends Controller
         return view('studentedit')->with('student',$student);
     }
     public function update(Request $req, $id){
+
         $name = $req->input('name');
         $num = $req->input('num');
         $course = $req->input('course');
@@ -46,15 +47,16 @@ class StudentController extends Controller
 
         DB::Select("update student set name = '$name', num = '$num', course = '$course', addr = '$addr'  where id = $id");
 
-        return redirect('/studentview')->with('Success','Data Updated');
+        return redirect('/user/studentview')->with('Success','Data Updated');
 
     }
 
     public function delete($id)
     {
+
         DB::delete("delete from student where id = $id");
 
-        return redirect('/studentview')->with('Success','Data Deleted');
+        return redirect('/user/studentview')->with('Success','Data Deleted');
 
     }
 
