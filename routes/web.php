@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\frontEnd\PagesController;
+use App\Http\Controllers\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,32 +13,26 @@ use App\Http\Controllers\frontEnd\PagesController;
 | contains the "web" middleware group. Now create something great!
 |
 */
- 
- /*---FrontEnd Routes Start ------------ --------------------*/
- Route::get('/',[PagesController::class,'index'])->name('frontEnd.home');
-
- Route::prefix('frontEnd')->group(function(){	
-	 Route::get('about-us',[PagesController::class,'about'])->name('frontEnd.about_us');
-	 Route::get('services',[PagesController::class,'services'])->name('frontEnd.services');
-	 Route::get('blog',[PagesController::class,'blog'])->name('frontEnd.blog');
-	 Route::get('contact',[PagesController::class,'contact'])->name('frontEnd.contact');
- });
 
 
- /*---------------------FrontEnd Routes End ------------ */
+route::get('/', [StudentController::class,'display'])->name('add');
 
+Route::prefix('user')->group(function (){
+route::post('/add', [StudentController::class,'save']);
 
- /*---BackEnd Routes Start ------------ --------------------*/
+Route::get('/studentview',[StudentController::class,'viewform']);
 
- Route::get('/admin',function(){
- 	return view('backEnd.admin.pages.home');
- });
+Route::get('/studentview',[StudentController::class,'index'])->name('dashboard');
+
+Route::get('edit/{id}', [StudentController::class,'edit'])->name('edit');
+
+Route::post('/update/{id}',[StudentController::class,'update'])->name('update');
+
+Route::get('/delete/{id}',[StudentController::class,'delete']);
+});
 
 
 
-  /*---BackEnd Routes End ------------ --------------------*/
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
+Route::get('/home',[StudentController::class,'admin']);
